@@ -1,0 +1,56 @@
+openapi: 3.0.0
+paths:
+  /calculate:
+    post:
+      summary: Calculate Fibonacci time
+      description: Accepts a time input in HH:MM format and calculates its Fibonacci time representation. Only times in 5-minute steps are valid inputs.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                time:
+                  type: string
+                  description: Time in HH:MM format, in 5-minute steps
+                  example: "14:25"
+      responses:
+        '200':
+          description: Fibonacci time representation of the input time
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FibonacciTime'
+        '400':
+          description: Invalid input format, missing time in the request body, or time not in 5-minute steps
+        '500':
+          description: Internal server error
+components:
+  schemas:
+    FibonacciTime:
+      type: object
+      required:
+        - time
+        - red
+        - green
+        - blue
+      properties:
+        time:
+          type: string
+          example: '08:20' # Adjusted to a valid time in 5-minute steps
+        red:
+          type: array
+          items:
+            type: integer
+          example: [5]
+        green:
+          type: array
+          items:
+            type: integer
+          example: [3, 2]
+        blue:
+          type: array
+          items:
+            type: integer
+          example: [1]

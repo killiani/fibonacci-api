@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "removeComments": false,
     "target": "es6",
     "module": "commonjs",
     "outDir": "./dist",

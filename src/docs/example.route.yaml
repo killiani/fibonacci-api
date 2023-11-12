@@ -1,0 +1,78 @@
+openapi: 3.0.0
+paths:
+  /example/{number}:
+    get:
+      summary: Get a example Fibonacci time
+      description: Retrieve an example Fibonacci time based on a provided index number.
+      parameters:
+        - in: path
+          name: number
+          required: true
+          description: Index of the example time to retrieve, valid indexes are 0 to 2.
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 2 # !!! must be raised if more examples are created !!!
+      responses:
+        '200':
+          description: An example Fibonacci time retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - time
+                  - red
+                  - green
+                  - blue
+                properties:
+                  time:
+                    type: string
+                    example: '07:00'
+                  red:
+                    type: array
+                    items:
+                      type: integer
+                    example: [2,5]
+                  green:
+                    type: array
+                    items:
+                      type: integer
+                    example: [1,5]
+                  blue:
+                    type: array
+                    items:
+                      type: integer
+                    example: []
+        '400':
+          description: The requested index number is out of range
+        '500':
+          description: There was an error reading the example times data or parsing the JSON
+components:
+  schemas:
+    FibonacciTime:
+      type: object
+      required:
+        - time
+        - red
+        - green
+        - blue
+      properties:
+        time:
+          type: string
+          example: '09:25'
+        red:
+          type: array
+          items:
+            type: integer
+          example: [1,5]
+        green:
+          type: array
+          items:
+            type: integer
+          example: [2]
+        blue:
+          type: array
+          items:
+            type: integer
+          example: [3]

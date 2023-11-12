@@ -1,0 +1,39 @@
+openapi: 3.0.0
+paths:
+  /random:
+    get:
+      summary: Get a random Fibonacci time
+      description: Retrieve a random time from the predefined list of Fibonacci times.
+      responses:
+        '200':
+          description: A random Fibonacci time
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - time
+                  - red
+                  - green
+                  - blue
+                properties:
+                  time:
+                    type: string
+                    example: '9:05'
+                  red:
+                    type: array
+                    items:
+                      type: number
+                    example: [5, 3]
+                  green:
+                    type: array
+                    items:
+                      type: number
+                    example: []
+                  blue:
+                    type: array
+                    items:
+                      type: number
+                    example: [1]
+        '500':
+          description: Server error reading the randomTimes.json data
