@@ -86,12 +86,12 @@ function formatOutput(time: string, hrFactors: number[], minFactors: number[]): 
 }
 
 /**
- * Accepts a time and returns an object of type FibonacciTime
+ * Accepts a time string and returns an object of type FibonacciTime
  * 
- * - TODO 
  * - times after 12 o'clock are set to 0 o'clock (12 hours) 
+ * - rounds the time to the nearest 5-minute mark" 
  * 
- * @param inputTime accepts a time as a tring e.b. "12:13"
+ * @param inputTime accepts a time as a tring e.g. "12:13"
  * @returns a Object as FibonacciTime Type
  */
 export function calculateFibonacciTime(inputTime: string): FibonacciTime {
