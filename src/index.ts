@@ -25,7 +25,6 @@ const swaggerOptions = {
 const swaggerSpecs = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
-
 app.get('/example/:number', getExampleTime); //  gives the example times from the exampleTimes.json
 app.get('/random', getRandomTime); // gives a random time from the randdomTimes.json
 

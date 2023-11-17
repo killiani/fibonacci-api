@@ -1,30 +1,23 @@
 import { FibonacciTime } from "../types/fibonacciTime";
 import { ColorAssignment } from "types/colorAssignment";
 
-
-function hourFactors(d1: number): number[] {
-  const numList = [5, 3, 2, 1, 1];
-  let hrFactors: number[] = [];
-  let remaining = d1; // Removed the '|| 12' to prevent it from defaulting to 12.
-  numList.forEach(num => {
-    if (remaining >= num) {
-      remaining -= num;
-      hrFactors.push(num);
-    }
-  });
-  return hrFactors;
-}
-
-function minuteFactors(d2: number): number[] {
+/**
+ * 
+ * @param time number of minutes or hours
+ * @param calcMinutes true for minutes and false for hours
+ * @returns array of time factors
+ */
+function timeFactors(time: number, calcMinutes: boolean): number[] {
   const numList = [5, 3, 2, 1, 1];
   let minFactors: number[] = [];
-  let remaining = Math.floor(d2 / 5);
-  numList.forEach(num => {
+  let remaining = calcMinutes ? Math.floor(time / 5) : time;
+
+  for (const num of numList) {
     if (remaining >= num) {
       remaining -= num;
       minFactors.push(num);
     }
-  });
+  }
   return minFactors;
 }
 
@@ -87,10 +80,8 @@ function formatOutput(time: string, hrFactors: number[], minFactors: number[]): 
 
 /**
  * Accepts a time string and returns an object of type FibonacciTime
- * 
  * - times after 12 o'clock are set to 0 o'clock (12 hours) 
  * - rounds the time to the nearest 5-minute mark" 
- * 
  * @param inputTime accepts a time as a tring e.g. "12:13"
  * @returns a Object as FibonacciTime Type
  */
@@ -103,8 +94,8 @@ export function calculateFibonacciTime(inputTime: string): FibonacciTime {
   minutes = Math.round(minutes / 5) * 5;
 
   hours = hours % 12; // Correctly handle '12' as '0'
-  let hrFactors = hours > 0 ? hourFactors(hours) : []; // Get hour factors unless it's '12' then it's an empty array.
-  let minFactors = minuteFactors(minutes); // Get minute factors normally.
+  let hrFactors = hours > 0 ? timeFactors(hours,false) : []; // Get hour factors unless it's '12' then it's an empty array.
+  let minFactors = timeFactors(minutes, true); // Get minute factors normally.
 
   // Format the output, adjust time display if needed
   let displayTime = hours === 0 ? '00' : hourStr;

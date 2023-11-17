@@ -1,6 +1,6 @@
 import { calculateFibonacciTime } from './calculateFibonacciColors'; 
 import { FibonacciTime } from '../types/fibonacciTime'; 
-import testTimes from '../static/randomTimes.json'; 
+import testTimes from '../static/testTimes.json'; 
 
 describe('calculateFibonacciTime() compare return with randomTimes.json ', () => {
   testTimes.forEach((testEntry: FibonacciTime) => {

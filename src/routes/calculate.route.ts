@@ -17,8 +17,6 @@ export function getCalculatedTime(req: Request, res: Response): void {
     return
   }
 
-  // calculate
   const result = calculateFibonacciTime(time);
-  console.log(result);
   res.json(result);
 }
